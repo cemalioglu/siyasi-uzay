@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Siyasi Görüş Testi</title>
-  <script src="https://cdn.plot.ly/plotly-2.18.3.min.js"></script>
+  <script src="https://unpkg.com/plotly.js-dist-min"></script>
   <style>
     body {
       font-family: sans-serif;
@@ -161,7 +161,6 @@
 
     document.getElementById("surveyForm").onsubmit = function(e) {
       e.preventDefault();
-      alert("SUBMIT ÇALIŞTI");
 
       // TÜM select'leri güvenli şekilde al
       const selects = document.querySelectorAll("#surveyForm select");
