@@ -160,10 +160,13 @@
 
     document.getElementById("surveyForm").onsubmit = function(e) {
       e.preventDefault();
-      const get = id => parseInt(document.forms["surveyForm"][`q${id}`].value);
+
+      // TÜM select'leri güvenli şekilde al
+      const selects = document.querySelectorAll("#surveyForm select");
       const values = [];
-      for (let i = 1; i <= 8; i++) {
-        const val = get(i);
+
+      for (let i = 0; i < selects.length; i++) {
+        const val = parseInt(selects[i].value);
         if (isNaN(val)) {
           alert("Lütfen tüm soruları yanıtlayın.");
           return;
@@ -171,6 +174,7 @@
         values.push(val);
       }
 
+      // Normalizasyon
       const scale = v => (v - 1) / 4;
       const laiklik = (scale(values[0]) + (1 - scale(values[1]))) / 2;
       const yonetim = (scale(values[3]) + (1 - scale(values[2]))) / 2;
@@ -178,6 +182,7 @@
 
       const partiler = Object.keys(positions);
       const x = [], y = [], z = [], labels = [];
+
       partiler.forEach(p => {
         x.push(positions[p][0]);
         y.push(positions[p][1]);
@@ -185,6 +190,7 @@
         labels.push(p);
       });
 
+      // Kullanıcıyı ekle
       x.push(laiklik);
       y.push(yonetim);
       z.push(ekonomi);
@@ -203,7 +209,7 @@
         marker: {
           size: 7,
           color: renkler,
-          line: { width: 1, color: 'black' }
+          line: { width: 1, color: "black" }
         }
       }], {
         scene: {
