@@ -1,226 +1,114 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Siyasi Görüş Testi</title>
   <script src="https://cdn.plot.ly/plotly-2.18.3.min.js"></script>
   <style>
-    body {
-      font-family: sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    .question {
-      margin-bottom: 20px;
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    select {
-      width: 100%;
-      padding: 5px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      display: block;
-      margin: 20px auto;
-    }
-    #chart {
-      margin-top: 40px;
-    }
+    body { font-family: sans-serif; max-width: 900px; margin: auto; }
+    .question { margin-bottom: 15px; }
+    button { padding: 10px; margin-top: 20px; }
+    #chart { margin-top: 40px; height: 600px; }
   </style>
 </head>
 <body>
-  <h1>Siyasi Görüş Testi</h1>
-  <form id="surveyForm">
-    <div class="question">
-      <label>1. Devletin tüm dinlere eşit mesafede durması, kamusal alanda dini simgelerin sınırlandırılmasını gerektirir.</label>
-      <select name="q1">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>2. İnançların eğitimde, hukukta ve devlet yönetiminde açıkça temsil edilmesi doğal ve gereklidir.</label>
-      <select name="q2">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>3. Devlet, gerektiğinde bazı özgürlükleri sınırlandırarak toplumsal düzeni sağlamalıdır.</label>
-      <select name="q3">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>4. Yerel halk, yaşadığı yerle ilgili kararlarda doğrudan söz sahibi olmalıdır.</label>
-      <select name="q4">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>5. Devlet, sağlık ve eğitim gibi temel hizmetleri ücretsiz ve kamusal sunmalıdır.</label>
-      <select name="q5">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>6. Özel sektörün rekabet gücü, kamunun ekonomideki rolünden daha önemlidir.</label>
-      <select name="q6">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>7. Devlet, tüm yurttaşlara aynı şekilde davranmalı; etnik, dini ya da cinsel kimlik ayrımı yapmamalı.</label>
-      <select name="q7">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <div class="question">
-      <label>8. Baskı gören kimliklerin özel olarak tanınması ve korunması gerekir.</label>
-      <select name="q8">
-        <option value="">Seçiniz</option>
-        <option value="1">Hiç Katılmıyorum</option>
-        <option value="2">Katılmıyorum</option>
-        <option value="3">Kararsızım</option>
-        <option value="4">Katılıyorum</option>
-        <option value="5">Tamamen Katılıyorum</option>
-      </select>
-    </div>
-    <button type="submit">Sonucumu Gör</button>
-  </form>
 
-  <div id="chart"></div>
+<h1>Siyasi Görüş Testi</h1>
 
-  <script>
-    const positions = {
-      "CHP": [0.8, 0.5, 0.3],
-      "AKP": [0.2, 0.2, 0.6],
-      "MHP": [0.5, 0.3, 0.4],
-      "HDP": [0.9, 0.8, 0.2],
-      "TİP": [1.0, 0.9, 0.1],
-      "İYİ Parti": [0.65, 0.4, 0.5],
-      "DEVA": [0.4, 0.6, 0.8],
-      "YRP": [0.1, 0.1, 0.3],
-      "Sentez Parti": [0.9, 0.75, 0.3],
-      "Zafer Partisi": [0.6, 0.2, 0.45],
-      "Memleket Partisi": [0.75, 0.4, 0.45],
-      "HÜDA PAR": [0.1, 0.2, 0.4]
-    };
+<form id="surveyForm">
+  <div class="question">1.
+    <select>
+      <option value="">Seç</option>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="question">2.
+    <select>
+      <option value="">Seç</option>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="question">3.
+    <select>
+      <option value="">Seç</option>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="question">4.
+    <select>
+      <option value="">Seç</option>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="question">5.
+    <select>
+      <option value="">Seç</option>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="question">6.
+    <select>
+      <option value="">Seç</option>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <button type="submit">Sonucumu Gör</button>
+</form>
 
-    document.getElementById("surveyForm").onsubmit = function(e) {
-      e.preventDefault();
+<div id="chart"></div>
 
-      // TÜM select'leri güvenli şekilde al
-      const selects = document.querySelectorAll("#surveyForm select");
-      const values = [];
+<script>
+const positions = {
+  CHP: [0.8,0.5,0.3],
+  AKP: [0.2,0.2,0.6],
+  MHP: [0.5,0.3,0.4]
+};
 
-      for (let i = 0; i < selects.length; i++) {
-        const val = parseInt(selects[i].value);
-        if (isNaN(val)) {
-          alert("Lütfen tüm soruları yanıtlayın.");
-          return;
-        }
-        values.push(val);
-      }
+document.getElementById("surveyForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-      // Normalizasyon
-      const scale = v => (v - 1) / 4;
-      const laiklik = (scale(values[0]) + (1 - scale(values[1]))) / 2;
-      const yonetim = (scale(values[3]) + (1 - scale(values[2]))) / 2;
-      const ekonomi = (scale(values[4]) + (1 - scale(values[5]))) / 2;
+  const selects = document.querySelectorAll("#surveyForm select");
+  const vals = [];
 
-      const partiler = Object.keys(positions);
-      const x = [], y = [], z = [], labels = [];
+  for (const s of selects) {
+    if (!s.value) { alert("Hepsini doldur"); return; }
+    vals.push(Number(s.value));
+  }
 
-      partiler.forEach(p => {
-        x.push(positions[p][0]);
-        y.push(positions[p][1]);
-        z.push(positions[p][2]);
-        labels.push(p);
-      });
+  const scale = v => (v-1)/4;
+  const laiklik = scale(vals[0]);
+  const yonetim = scale(vals[1]);
+  const ekonomi = scale(vals[2]);
 
-      // Kullanıcıyı ekle
-      x.push(laiklik);
-      y.push(yonetim);
-      z.push(ekonomi);
-      labels.push("Siz");
+  const x=[],y=[],z=[],labels=[];
+  for (const k in positions) {
+    x.push(positions[k][0]);
+    y.push(positions[k][1]);
+    z.push(positions[k][2]);
+    labels.push(k);
+  }
 
-      const renkler = Array(partiler.length).fill("blue").concat("red");
+  x.push(laiklik); y.push(yonetim); z.push(ekonomi); labels.push("Siz");
 
-      Plotly.newPlot("chart", [{
-        type: "scatter3d",
-        mode: "markers+text",
-        x: x,
-        y: y,
-        z: z,
-        text: labels,
-        textposition: "top center",
-        marker: {
-          size: 7,
-          color: renkler,
-          line: { width: 1, color: "black" }
-        }
-      }], {
-        scene: {
-          xaxis: { title: "Laiklik (Dindar → Laik)", autorange: "reversed" },
-          yaxis: { title: "Yönetim Biçimi (Otoriter → Özgürlükçü)" },
-          zaxis: { title: "Ekonomi (Sosyalist → Liberal)" }
-        },
-        margin: { l: 0, r: 0, b: 0, t: 30 },
-        title: "Siyasi Uzayda Konumunuz"
-      });
-    }
-  </script>
+  Plotly.newPlot("chart",[{
+    type:"scatter3d",
+    mode:"markers+text",
+    x,y,z,text:labels
+  }]);
+});
+</script>
+
 </body>
 </html>
